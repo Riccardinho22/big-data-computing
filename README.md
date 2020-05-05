@@ -1,4 +1,4 @@
-# Big Data Computing
+# Big Data Computing (2019-2020)
 
 ## News
 - A document containing the main guidelines for the final project is now available [here](./extra/Final_Project_Guidelines.pdf).
@@ -18,7 +18,7 @@ Welcome to the Big Data Computing class!
 
 This is a first-year, second-semester course of the [MSc in Computer Science of Sapienza University of Rome](https://www.studiareinformatica.uniroma1.it/master-course-computer-science).
 
-This repository contains class material along with any useful information for the current academic year (2019/20).
+This repository contains class material along with any useful information for the 2019-2020 academic year.
 
 ### Class Schedule
 - **Tuesday** from **8:00AM** to **10:00AM** (Room Alfa, via Salaria 113)
@@ -81,8 +81,8 @@ No textbooks are mandatory to successfully follow this course. However, there is
 - Regression/Classification
 - Algorithms: Linear Regression/Logistic Regression/Random Forest
 - Examples: 
-    - Linear Regression -> House Pricing Prediction
-    - Logistic Regression/Random Forest -> Click-Through Rate (CTR) Prediction (_to be confirmed_)
+    - Linear Regression -> House Pricing Prediction (i.e., predict the price which a house will be sold)
+    - Logistic Regression/Random Forest -> Marketing Campaign Prediction (i.e., predict whether a customer will subscribe a term deposit of a bank)
 
 **Recommender Systems**
 - Content-based vs. Collaborative filtering
@@ -178,3 +178,5 @@ Still, in case you would like to perform _also_ local mode installation, the fol
 | Lecture 12 | 04/08/2020 | Linear Regression with PySpark | [notebook: <a href="./notebooks/09_Linear_Regression.ipynb" target="_blank">ipynb</a>] |
 | Lecture 13 | 04/15/2020 | Logistic Regression | [slides: <a href="./slides/10_Logistic_Regression.pdf" target="_blank">PDF</a>, notes: <a href="./extra/Notes_on_Logistic_Regression.pdf" target="_blank">PDF</a>] |
 | Lecture 14 | 04/21/2020 | Gradient Descent | [slides: <a href="./slides/10_Logistic_Regression.pdf" target="_blank">PDF</a>]|
+| Lecture 15 | 04/22/2020 | Decision Trees and Ensembles | [slides: <a href="./slides/11_Decision_Trees_and_Ensembles.pdf" target="_blank">PDF</a>]|
+| Lecture 16 | 04/28/2020 | Evaluation Metrics for Classification | [slides: <a href="./slides/12_Evaluation_Metrics_for_Classification.pdf" target="_blank">PDF</a>]|
