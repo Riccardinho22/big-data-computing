@@ -67,9 +67,11 @@ For each user create a user profile.
 
 - **the simplest solution** is to take the average through all items  rated by the user, this approach is not fair, all items are treated equally  
 
-  ![slides1](/Users/riccardo/OneDrive - uniroma1.it/Uni/Master/BigData/big-data-computing/summaries/reccomendation-system/slides1.png)
+  ![slides1](/Users/riccardo/OneDrive - uniroma1.it/Uni/Master/BigData/big-data-computing/summaries/reccomendation-system/img/slides1.png)
 
-The slides above shows a list of item profiles, which are rappresentad using features actor1, actor2, up to every cell there's the scaled rating for that moovie 
+The slides above shows a list of item profiles, which are rappresentad using features actor1, actor2, up to every cell there's the scaled rating for that moovie.
+
+> **The user profile is the green rectangle, which is the mean of the rating across the 5 items profile previously chosen.**  
 
 ## 	Building predictions, content-based filtering
 
@@ -78,6 +80,14 @@ The slides above shows a list of item profiles, which are rappresentad using fea
 - For each item **unrated** by **u**, compute the cosine sim (or another) between u and the corresponding item profile vectors;
 
 - Finally, we pick the top-k items with **the highest similarity score**, and we reccomend those to u.
+  $$
+  A^0 = \empty \\
+  A^1 = argmax_{i}\{ sim(u,i): i \in I- I_{u} -A^0\}\\
+  A^2 = argmax_{i}\{ sim(u,i): i \in I- I_{u} -A^0-A^1\}\\
+  
+  R_{u,k} = \bigcup\limits_{j=1}^{k} A^j
+  $$
+  
 
   ## PROs
 
@@ -101,3 +111,30 @@ The slides above shows a list of item profiles, which are rappresentad using fea
 
   
 
+## **2. Collaborative filtering**
+
+Recommend items to user *u* based on preferences of other users similar to *u*
+
+> Here we aren't using any sort of f.e. techniques, we don't need any effort in order to extract information
+
+Three main approaches
+
+- 2.1. Neighbourhood-based
+
+### 2.1. Neighbourhood-based
+
+Compute the relationship between useres or items, the first one evaluates a user's preference for an item based on ratings of "neighboring" users for that item; whereas item-based evaluate preference on rating of "neighboring" items by the same user 
+
+	#### 	**2.1.1. User based Neigh.**
+
+​	Given a user *u* and an item *i* not rated by *u*,we want estimate r(u,i), takes the set $$ \{u': u' \ne u \}$$, who have already rated the item *i*, extract a subest of k neighbours of *u*
+
+> K-neigh of *u* is found on the basis of the similarity between user ratings without the need of explicit user profiles
+
+In theory, rating prediction *r(u,i)* could be defined on any *i* not rated by *u*, in pratice we are interessed only in estimating *r(u,i)* for those *i* which have been rated by the u's k-neigh.
+
+> Hint: if a user *v* is not in the k-n of *u* then very likely *u* will not be interested in any item that only *v* has rated.
+
+![slides2](/Users/riccardo/OneDrive - uniroma1.it/Uni/Master/BigData/big-data-computing/summaries/reccomendation-system/img/Screenshot 2020-05-18 at 14.26.20.png)
+
+Bob has Alice and Carl as your neigh., according to the mean compute through all moovies watched by Alice and Carl **user-based neigh.** reccommend Sherek which is the highest.
