@@ -1,6 +1,7 @@
 # Big Data Computing (2019-2020)
 
 ## News
+- **### No class on Tuesday, May 19 ###**. As already announced, there will be **only one** class in the next week schedule. More specifically, our next class will be on **Wednesday, May 20** at **3:00PM**.
 - A document containing the main guidelines for the final project is now available [here](./extra/Final_Project_Guidelines.pdf).
 - Online classes will be suspended from **Thursday, April 9** to **Tuesday, April 14**, due to Easter holidays. Our next class will take place on **Wednesday, April 15** at **3:00PM** on Google Meet.
 - Online classes will also be recorded, so as to allow you to watch them offline at your own convenience.<br>
@@ -86,14 +87,13 @@ No textbooks are mandatory to successfully follow this course. However, there is
 
 **Recommender Systems**
 - Content-based vs. Collaborative filtering
-- Algorithms: k-NN, SVD (matrix factorization)
-- Example: MovieLens (_to be confirmed_)
+- Algorithms: k-NN, Matrix Factorization (MF)
+- Example: Movie Recommender System (MovieLens)
 
 **Graph Analysis**
-- Social Network Analysis
-- Graph Metrics
+- Link Analysis
 - Algorithms: PageRank
-- Example: Link Prediction (_to be confirmed_)
+- Example: Ranking web pages (_to be confirmed_)
 
 **Real-time Analytics**
 - Stream Processing
@@ -182,3 +182,6 @@ Still, in case you would like to perform _also_ local mode installation, the fol
 | Lecture 16 | 04/28/2020 | Evaluation Metrics for Classification | [slides: <a href="./slides/12_Evaluation_Metrics_for_Classification.pdf" target="_blank">PDF</a>]|
 | Lecture 17 | 04/29/2020 | Classification with PySpark | [notebook: <a href="./notebooks/10_Classification.ipynb" target="_blank">ipynb</a>] |
 | Lecture 18 | 05/05/2020 | Recommender Systems (Part I) | [slides: <a href="./slides/13_Recommender_Systems_(Part_I).pdf" target="_blank">PDF</a>]|
+| Lecture 19 | 05/06/2020 | Recommender Systems (Part II) | [slides: <a href="./slides/13_Recommender_Systems_(Part_II).pdf" target="_blank">PDF</a>]|
+| Lecture 20 | 05/12/2020 | Recommender Systems (Matrix Factorization) with PySpark | [notebook: <a href="./notebooks/13_MF_Recommender_Systems.ipynb" target="_blank">ipynb</a>] |
+| Lecture 21 | 05/13/2020 | Graph Link Analysis | [slides: <a href="./slides/14_Graph_Link_Analysis.pdf" target="_blank">PDF</a>]|
