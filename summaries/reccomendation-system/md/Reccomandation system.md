@@ -57,7 +57,7 @@ Recommend items to user u similiar to previous items rated highly by u.
 Given the **item profiles**, the description of am item, we want to be able to create a **user profiles**, it says what the users likes.
 After do that we want combine **user profiles** with the item trough all catalog.
 
-- **item profiles**, for each item i create a profile, i.e. a set of featues, that's better rappresent the specific item, this is a f.e. taks.
+- **item profiles**, for each item i create a profile, i.e. a set of featues, <u>that better rappresent the specific item</u>, this is a f.e. taks, extract features from your items
 
   > Let's take an item as article, the possible profile could be an array of word for each article, and this array contains the a score for every word in the arrays.
 
@@ -65,9 +65,15 @@ After do that we want combine **user profiles** with the item trough all catalog
   
   ## User profiles strategies
 
-For each user create a user profile.
+Once you've the item profiles, for each user create a user profile, based him/her rated items profile. 
 
-- **the simplest solution** is to take the average through all items  rated by the user, this approach is not fair, all items are treated equally  
+- **the simplest solution** is to take the average through all items  rated by him/her, this approach is not fair, all items are treated equally  
+
+  <img src="../img/slides0.png" alt="slides1" style="zoom:50%;" />
+  
+- Now let consider the rating for each items, for semplicity we standardise the ratings. i.ei item 1 has 3 of rating, 3-3(the mean)
+
+  <img src="../img/slides02.png" alt="slides1" style="zoom:50%;" />
 
   ![slides1](../img/slides1.png)
 
@@ -115,11 +121,11 @@ The slides above shows a list of item profiles, which are rappresentad using fea
 
 ## **2. Collaborative filtering**
 
-Recommend items to user *u* based on preferences of other users similar to *u*
+Recommend items to user *u* based on preferences of other users **similar** to *u*
 
 > Here we aren't using any sort of f.e. techniques, we don't need any effort in order to extract information
 
-Three main approaches
+3 main approaches
 
 - 2.1. Neighbourhood-based
 
@@ -141,7 +147,7 @@ In theory, rating prediction *r(u,i)* could be defined on any *i* not rated by *
 
 Bob has Alice and Carl as your neigh., according to the mean compute through all moovies watched by Alice and Carl **user-based neigh.** reccommend Sherek which is the highest.
 
-#### 	2.1.2. User to user similarity 
+#### 	User to user similarity
 
 Finding u' that are ''similar'' to u, **remark**, we are not building any counter-based user/item profil.
 
@@ -157,7 +163,7 @@ $$
 sim(u,v) = J(r_u,r_v) = \frac{|r_u \cap r_v|}{|r_u \cup r_v|}
 $$
 
-​				**2.1.2.2  Cosine similarity**
+**2.1.2.2  Cosine similarity**
 $$
 sim(u,v) = cosine(r_u,r_v) = \frac{|r_u \cdot r_v|}{||r_u||\cdot ||r_v||}
 $$
@@ -188,7 +194,7 @@ Two possible way to aggregating neighboors ratings
 
   
 
-#### 2.1.3 Item Based CF
+#### 2.2. Item Based CF, Neighborhood
 
 Introduced to overcome the 3 issues showed above, given an user *u* an item *i* not rated by *u*, we want to estimate *r(u,i)*, we take the set of the items rated by *u* and compute the k-neigh. items.
 
@@ -196,7 +202,7 @@ Introduced to overcome the 3 issues showed above, given an user *u* an item *i* 
 
 The key trick is to find the way to compute the similarity between **items**, this time rather than $$ r_u$$ we compute $$ r_i$$ m-dimensional vector of ratings provided for item i (m = # of users)
 
-<img src="C:\Users\ricca\OneDrive - uniroma1.it\uni\master\big-data\big-data-computing\summaries\reccomendation-system\img\slides3.png" alt="slides3" style="zoom:30%;" />
+<img src="../img/slides03.png" alt="slides1" style="zoom:50%;" />
 
 **Use the same score-similarity introduced and rating the prediction using the same  before** 
 
@@ -204,14 +210,21 @@ As a conclusion of the Model-based CF, we state that is most expensive find the 
 
 > We have to deal with the curse of the dimensionality, since the k.n.n is rappresented in high dimensions
 
+The item based approach the generated vector is less sparse and suffer less of anging 
+
 ### 2.2 Latent Factor CF
 
-Tries to reduce the vectors dimension both for users and items, with a number of hidden features inferred from observed ratings
+Tries to reduce the vectors dimension BOTH for users and items, with a number of hidden features inferred from observed ratings
 
-We have d-dimensional space (which don't know) which contains d hidden feature, let $$ x_u \in \R^d $$ d-dimensinal vector representing user *u* and $$ w_i \in \R^d $$  for the items (same as the users)
+We have d-dimensional space (which don't know) which contains d hidden feature, user-item interactions are defined as inner products in that space
 
-- Each $$ x_u \in \R^d $$ measures the extent of interest user *u* has in items exhibiting the k-th factor
-- $$ w_i \in \R^d $$  measures the extent to which the item *i* has the k-factor
+ let $$ x_u \in \R^d $$ d-dimensinal vector representing user *u* and $$ w_i \in \R^d $$  for the items (same as the users)
+
+- Each $$ x_u \in \R^d $$ measures the extent of interest user *u* has in items exhibiting the (latent) k-th factor
+
+- $$ w_i \in \R^d $$  measures the extent to which the item *i* has the k-factor, how much the item is related to this latent factor
+
+  **REMARK: WE DON'T WHAT THESE FEATURE ARE, HENCE WE DON'T KNOW WHAT THE NUMBER OF EACH D-DIMENSION RAPPRESENTED**
 
 Features interpreatation:
 
@@ -227,3 +240,47 @@ r(u,i) = r_{u,i} \\
 r'_{u,i} = x
 $$
 We want to learn the latent user vector and latent item vector
+
+<img src="../img/slides04.png" alt="slides1" style="zoom:50%;" />
+
+<img src="../img/slides05.png" alt="slides1" style="zoom:50%;" />
+
+$$ 	X$$ is the user's matrix which is the embedded of the user
+
+$$ W^T $$ is the item's matrix which is the embedded of the item
+
+We want estimate $$R$$, which is **partially known**, using this fact we are able to train a model such that allow us to create a training samples (the R instances known) in order to predict not known samples of R, obviusly we define an opt. problem
+
+​	<img src="../img/slides06.png" alt="slides1" style="zoom:50%;" />
+
+### Two main way to comput best parameters 
+
+- SGD
+
+<img src="../img/slides07.png" alt="slides1" style="zoom:50%;" />
+
+if the dimension of R is very high doesn't work well
+
+- ALS
+
+  The original obj function is non-convex, ALS operates in alternately fixing one latent vector and updating the other one, to do that, when one latent vector is fied, the obj, becomes quadratic and therefore covex! **Hence we could apply the OLS techniques**.
+
+<img src="../img/slides08.png" alt="slides1" style="zoom:50%;" />
+
+OLS w.r.t the item latent vector
+
+<img src="../img/slides09.png" alt="slides1" style="zoom:50%;" />
+
+In general SGD is easier and faster than ALS, but ALS with ALS we could paralellize the computation and if the training set is dense (enough rating for each istances) and hence SGD is computational infeasible
+
+img 
+
+img
+
+img
+
+CF suffer 3 main problem:
+
+- cold start for a new user/item entering the system there is not enough data to make recommendations;
+- Scalability, whenever you have lot of data, the computaitonal power is too high;
+- Sparsity.
